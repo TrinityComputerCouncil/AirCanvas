@@ -1,12 +1,12 @@
-# Aircanvas
+# Magic In The Air
 
 ## Running the project
 
 - Download [poetry]("https://python-poetry.org/docs/#installation") for python
 
 ```bash
-git clone git@github.com:TrinityComputerCouncil/AirCanvas.git
-cd AirCanvas
+git clone git@github.com:TrinityComputerCouncil/MagicInTheAir.git
+cd MagicInTheAir
 poetry shell
-python aircanvas/Air-canvas.py
+python magicinair/main.py
 ```
