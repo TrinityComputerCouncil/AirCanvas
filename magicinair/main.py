@@ -2,7 +2,10 @@ import numpy as np
 import cv2
 from collections import deque
 
-#default called trackbar function 
+from magicinair.config import VIDEO_HEIGHT, VIDEO_WIDTH
+from magicinair.image import image
+
+# Default called trackbar function 
 def setValues(x):
    print("")
 
@@ -51,8 +54,11 @@ cv2.putText(paintWindow, "YELLOW", (520, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (15
 cv2.namedWindow('Paint', cv2.WINDOW_AUTOSIZE)
 
 
+
 # Loading the default webcam of PC.
 cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, VIDEO_WIDTH)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, VIDEO_HEIGHT)
 
 # Keep looping
 while True:
@@ -79,6 +85,7 @@ while True:
     frame = cv2.rectangle(frame, (275,1), (370,65), colors[1], -1)
     frame = cv2.rectangle(frame, (390,1), (485,65), colors[2], -1)
     frame = cv2.rectangle(frame, (505,1), (600,65), colors[3], -1)
+    
     cv2.putText(frame, "CLEAR ALL", (49, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
     cv2.putText(frame, "BLUE", (185, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
     cv2.putText(frame, "GREEN", (298, 33), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
