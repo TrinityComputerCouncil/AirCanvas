@@ -2,8 +2,8 @@ import numpy as np
 import cv2
 from collections import deque
 
-from magicinair.config import CENTER_CIRCLE, RADIUS, VIDEO_HEIGHT, VIDEO_WIDTH
-from magicinair.utils.checkRadius import check_radius
+from config import CENTER_CIRCLE, RADIUS, VIDEO_HEIGHT, VIDEO_WIDTH
+from utils.checkRadius import check_radius
 
 def setValues(x):
     print("")
