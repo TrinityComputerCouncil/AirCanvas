@@ -2,8 +2,7 @@ import numpy as np
 import cv2
 from collections import deque
 
-from config import CENTER_CIRCLE, RADIUS, VIDEO_HEIGHT, VIDEO_WIDTH
-from utils.checkRadius import check_radius
+from config import VIDEO_HEIGHT, VIDEO_WIDTH
 
 def setValues(x):
     print("")
@@ -106,8 +105,6 @@ class MagicAir:
             # Calculating the center of the detected contour
             M = cv2.moments(cnt)
             center = (int(M['m10'] / M['m00']), int(M['m01'] / M['m00']))       
-            # Now checking if the user wants to click on any button above the screen 
-            print(check_radius(CENTER_CIRCLE, center, RADIUS))
             if center[1] <= 65:
                 if 40 <= center[0] <= 140: # Clear Button
                     self.b_points = [deque(maxlen=512)]
