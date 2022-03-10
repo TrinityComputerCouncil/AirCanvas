@@ -79,7 +79,6 @@ class MagicAir:
     def handle_btns(self) -> None:
 
         self.frame = cv2.rectangle(self.frame, (40,1), (140,65), (122,122,122), -1)
-        self.frame = cv2.circle(self.frame, CENTER_CIRCLE, RADIUS, (122, 122, 122), -1)
         self.frame = cv2.rectangle(self.frame, (160,1), (255,65), self.colors[0], -1)
         self.frame = cv2.rectangle(self.frame, (275,1), (370,65), self.colors[1], -1)
         self.frame = cv2.rectangle(self.frame, (390,1), (485,65), self.colors[2], -1)
@@ -92,14 +91,13 @@ class MagicAir:
 
     def find_countours(self) -> None:
         # Find contours for the pointer after idetifying it
-        self.cnts,_ = cv2.findContours(self.Mask.copy(), cv2.RETR_EXTERNAL,
-        	cv2.CHAIN_APPROX_SIMPLE)
+        self.cnts,_ = cv2.findContours(self.Mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         center = None
 
     def handle_countours(self) -> None:
         # Ifthe contours are formed
         if len(self.cnts) > 0:
-        	# sorting the contours to find biggest 
+            # sorting the contours to find biggest 
             cnt = sorted(self.cnts, key = cv2.contourArea, reverse = True)[0]
             # Get the radius of the enclosing circle around the found contour
             ((x, y), radius) = cv2.minEnclosingCircle(cnt)
@@ -169,9 +167,14 @@ class MagicAir:
         cv2.destroyAllWindows()
     
     def handle_click(self) -> None:
+        key = cv2.waitKey(1)
         # If the 'q' key is pressed then stop the application 
-        if cv2.waitKey(1) & 0xFF == ord("q"):
+        if key == ord("q"):
             self.run = False
+            print(0xFF)
+        # If the 's' key is pressed then save the image to storage of same working directory
+        if key == ord("s"):
+            cv2.imwrite('output.jpg', self.frame)
 
     def loop(self) -> None:
         while self.run:
